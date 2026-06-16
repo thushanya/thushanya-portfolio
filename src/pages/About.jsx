@@ -1,4 +1,5 @@
 ﻿import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const skillCategories = [
   { title: "Languages", items: ["Python", "Java", "C++", "JavaScript"] },
@@ -15,6 +16,8 @@ const metrics = [
 ];
 
 export default function About() {
+  const navigate = useNavigate();
+
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#05010d] text-white">
 
@@ -26,7 +29,7 @@ export default function About() {
 
       <div className="relative z-10">
 
-        {/* ================= HERO (PINNED APPLE STYLE) ================= */}
+        {/* HERO */}
         <section className="min-h-screen flex items-center justify-center px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -51,7 +54,7 @@ export default function About() {
           </motion.div>
         </section>
 
-        {/* ================= METRICS STRIP (FLOATING APPLE STYLE) ================= */}
+        {/* METRICS */}
         <section className="px-6 pb-32">
           <motion.div
             initial={{ opacity: 0 }}
@@ -60,7 +63,7 @@ export default function About() {
             className="flex flex-wrap justify-center gap-x-12 gap-y-6 text-center"
           >
             {metrics.map((m, i) => (
-              <div key={i} className="relative">
+              <div key={i}>
                 <p className="text-xs uppercase tracking-[0.3em] text-violet-400/60">
                   {m.label}
                 </p>
@@ -70,7 +73,7 @@ export default function About() {
           </motion.div>
         </section>
 
-        {/* ================= PHILOSOPHY (SCROLL STORY) ================= */}
+        {/* PHILOSOPHY */}
         <section className="min-h-screen flex items-center px-6">
           <div className="max-w-5xl mx-auto space-y-16">
 
@@ -100,7 +103,7 @@ export default function About() {
           </div>
         </section>
 
-        {/* ================= EXPERIENCE (APPLE CLEAN FLOW) ================= */}
+        {/* EXPERIENCE */}
         <section className="min-h-screen flex items-center px-6">
           <div className="max-w-4xl mx-auto space-y-16">
 
@@ -144,7 +147,7 @@ export default function About() {
           </div>
         </section>
 
-        {/* ================= SKILLS (FLOATING MATRIX) ================= */}
+        {/* SKILLS */}
         <section className="min-h-screen flex items-center px-6">
           <div className="max-w-6xl mx-auto w-full">
 
@@ -178,7 +181,7 @@ export default function About() {
           </div>
         </section>
 
-        {/* ================= FINAL CTA (APPLE STYLE HERO END) ================= */}
+        {/* CTA */}
         <section className="min-h-screen flex items-center justify-center px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -195,12 +198,11 @@ export default function About() {
             </p>
 
             <button
-            onClick={() => navigate("/hire")}
-            className="px-6 py-3 rounded-full border border-white/10 hover:bg-white/5 transition"
+              onClick={() => navigate("/hire")}
+              className="px-6 py-3 rounded-full border border-white/10 hover:bg-white/5 transition"
             >
-            Start a project →
+              Start a project →
             </button>
-            
           </motion.div>
         </section>
 
