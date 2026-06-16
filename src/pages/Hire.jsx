@@ -18,6 +18,7 @@ export default function Hire() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const subject = `New Project Inquiry from ${formData.name}`;
     const body = `Name: ${formData.name}
 Email: ${formData.email}
@@ -34,163 +35,160 @@ ${formData.message}`;
   };
 
   const services = [
-    { icon: "🚀", title: "Web Development", desc: "Modern React, scalable UI systems.", price: "From $50/hr" },
-    { icon: "🤖", title: "Machine Learning", desc: "Real-world prediction systems & NLP.", price: "Project based" },
-    { icon: "📊", title: "Data Science", desc: "Dashboards, analytics, insights.", price: "Project based" },
-    { icon: "💼", title: "Consulting", desc: "Architecture & system design guidance.", price: "From $75/hr" },
-    { icon: "🎨", title: "UI/UX", desc: "Clean, modern interface design systems.", price: "From $40/hr" },
-    { icon: "🔧", title: "Full Stack", desc: "End-to-end production systems.", price: "Custom quote" }
+    { icon: "🚀", title: "Web Development", desc: "Modern React systems with scalable UI architecture." },
+    { icon: "🤖", title: "Machine Learning", desc: "Prediction models, NLP systems, and AI integrations." },
+    { icon: "📊", title: "Data Science", desc: "Dashboards, analytics, and decision intelligence." },
+    { icon: "💼", title: "Consulting", desc: "System design, architecture, and optimization." },
+    { icon: "🎨", title: "UI/UX", desc: "Clean, minimal, high-conversion interfaces." },
+    { icon: "🔧", title: "Full Stack", desc: "End-to-end production-grade applications." }
   ];
 
   return (
-    <div className="relative min-h-screen overflow-hidden pt-24 pb-24 bg-[#07020f] text-white">
+    <div className="relative min-h-screen bg-[#07020f] text-white overflow-hidden">
 
-      {/* background glow */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-1/2 h-[500px] w-[500px] -translate-x-1/2 bg-violet-500/20 blur-[140px]" />
-        <div className="absolute bottom-0 right-0 h-[400px] w-[400px] bg-cyan-500/10 blur-[120px]" />
-        <div className="absolute top-40 left-10 h-[300px] w-[300px] bg-fuchsia-500/10 blur-[120px]" />
+      {/* ================= BACKGROUND ================= */}
+      <div className="fixed inset-0 -z-10">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[700px] w-[700px] bg-violet-500/15 blur-[180px]" />
+        <div className="absolute bottom-0 right-0 h-[500px] w-[500px] bg-cyan-500/10 blur-[160px]" />
+        <div className="absolute top-40 left-10 h-[400px] w-[400px] bg-fuchsia-500/10 blur-[160px]" />
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6">
+      <div className="relative z-10 max-w-6xl mx-auto px-6 space-y-32 pt-28 pb-28">
 
-        {/* HERO */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
+        {/* ================= HERO ================= */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-20"
+          className="text-center"
         >
           <span className="text-xs tracking-[0.4em] uppercase text-violet-300">
             Let’s collaborate
           </span>
 
-          <h1 className="mt-6 text-5xl md:text-6xl font-bold">
+          <h1 className="mt-6 text-5xl md:text-6xl font-bold leading-tight">
             Build something{" "}
             <span className="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-300 bg-clip-text text-transparent">
-              impactful
+              meaningful
             </span>
           </h1>
 
-          <p className="mt-6 max-w-2xl mx-auto text-violet-100/70">
-            Freelance development, ML systems, and data products built with production-grade quality and clean UI systems.
+          <p className="mt-6 max-w-2xl mx-auto text-violet-100/70 leading-relaxed">
+            Freelance development, machine learning systems, and scalable data products designed with production precision.
           </p>
-        </motion.div>
+        </motion.section>
 
-        {/* SERVICES — FLOATING / STAGGER LAYOUT */}
-        <div className="grid md:grid-cols-3 gap-6 mb-24">
+        {/* ================= SERVICES (SPATIAL GRID) ================= */}
+        <section className="grid md:grid-cols-3 gap-10">
           {services.map((s, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
-              className={`group relative p-6 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl
-                ${i % 2 === 0 ? "md:-translate-y-4" : ""}`}
+              className={`relative group`}
             >
-              <div className="text-3xl mb-3 group-hover:scale-110 transition">
-                {s.icon}
+              <div className={`p-8 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl transition
+                ${i % 2 === 0 ? "md:-translate-y-6" : ""}`}
+              >
+
+                <div className="text-3xl mb-4 group-hover:scale-110 transition">
+                  {s.icon}
+                </div>
+
+                <h3 className="text-xl font-semibold text-violet-200">
+                  {s.title}
+                </h3>
+
+                <p className="mt-3 text-violet-100/60 leading-relaxed">
+                  {s.desc}
+                </p>
+
               </div>
 
-              <h3 className="text-lg font-semibold text-violet-200">
-                {s.title}
-              </h3>
-
-              <p className="mt-2 text-sm text-violet-100/60">
-                {s.desc}
-              </p>
-
-              <p className="mt-4 text-sm text-violet-300">
-                {s.price}
-              </p>
-
-              <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition bg-gradient-to-r from-violet-500/10 to-cyan-500/10" />
+              {/* glow */}
+              <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition bg-gradient-to-r from-violet-500/10 to-cyan-500/10 blur-xl" />
             </motion.div>
           ))}
-        </div>
+        </section>
 
-        {/* SPLIT SECTION */}
-        <div className="grid lg:grid-cols-2 gap-10 items-start">
+        {/* ================= INFO SPLIT ================= */}
+        <section className="grid lg:grid-cols-2 gap-12 items-start">
 
-          {/* INFO PANEL */}
+          {/* LEFT INFO */}
           <div className="relative">
             <div className="absolute inset-0 bg-violet-500/10 blur-3xl rounded-3xl" />
 
             <div className="relative p-10 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl">
-              <h2 className="text-3xl font-bold">
-                Ready to build?
+              <h2 className="text-3xl font-semibold">
+                Structured execution. Clean delivery.
               </h2>
 
-              <p className="mt-4 text-violet-100/70">
-                Share your idea and get a structured system design + implementation plan for your project.
+              <p className="mt-4 text-violet-100/70 leading-relaxed">
+                Every project starts with system design clarity, ensuring scalable architecture before implementation begins.
               </p>
 
-              <div className="mt-8 space-y-4 text-sm">
+              <div className="mt-8 space-y-3 text-sm text-violet-100/70">
                 <p><span className="text-violet-300">Email:</span> thushanyajeyathasan@gmail.com</p>
                 <p><span className="text-violet-300">Phone:</span> +94 77 3254779</p>
-                <p><span className="text-violet-300">Work:</span> Remote / Hybrid / Freelance</p>
+                <p><span className="text-violet-300">Availability:</span> Remote / Hybrid / Freelance</p>
               </div>
             </div>
           </div>
 
-          {/* FORM — FLOATING GLASS */}
+          {/* RIGHT FORM */}
           <motion.form
             onSubmit={handleSubmit}
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="relative p-8 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl"
+            className="p-10 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl space-y-5"
           >
-            <div className="space-y-4">
+            {["name", "email", "phone", "company"].map((key) => (
+              <div key={key}>
+                <label className="text-sm text-violet-200 capitalize">
+                  {key}
+                </label>
 
-              {[
-                ["name", "Full Name *"],
-                ["email", "Email *"],
-                ["phone", "Phone"],
-                ["company", "Company"]
-              ].map(([key, label]) => (
-                <div key={key}>
-                  <label className="text-sm text-violet-200">{label}</label>
-                  <input
-                    name={key}
-                    value={formData[key]}
-                    onChange={handleChange}
-                    className="w-full mt-2 px-4 py-3 rounded-xl bg-black/20 border border-white/10 text-white outline-none focus:border-violet-400/40"
-                  />
-                </div>
-              ))}
+                <input
+                  name={key}
+                  value={formData[key]}
+                  onChange={handleChange}
+                  className="w-full mt-2 px-4 py-3 rounded-xl bg-black/20 border border-white/10 outline-none focus:border-violet-400/40"
+                />
+              </div>
+            ))}
 
-              <select
-                name="projectType"
-                value={formData.projectType}
-                onChange={handleChange}
-                className="w-full mt-2 px-4 py-3 rounded-xl bg-black/20 border border-white/10 text-white"
-              >
-                <option value="">Project Type</option>
-                <option>Web Development</option>
-                <option>Machine Learning</option>
-                <option>Data Science</option>
-                <option>Consulting</option>
-              </select>
+            <select
+              name="projectType"
+              value={formData.projectType}
+              onChange={handleChange}
+              className="w-full px-4 py-3 rounded-xl bg-black/20 border border-white/10"
+            >
+              <option value="">Project Type</option>
+              <option>Web Development</option>
+              <option>Machine Learning</option>
+              <option>Data Science</option>
+              <option>Consulting</option>
+            </select>
 
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                rows="5"
-                placeholder="Describe your project..."
-                className="w-full mt-2 px-4 py-3 rounded-xl bg-black/20 border border-white/10 text-white resize-none"
-              />
+            <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              rows="5"
+              placeholder="Describe your project..."
+              className="w-full px-4 py-3 rounded-xl bg-black/20 border border-white/10 resize-none"
+            />
 
-              <button
-                type="submit"
-                className="w-full py-3 rounded-full bg-violet-500/20 hover:bg-violet-500/30 transition"
-              >
-                Send Inquiry →
-              </button>
-            </div>
+            <button
+              type="submit"
+              className="w-full py-3 rounded-full bg-violet-500/20 hover:bg-violet-500/30 transition"
+            >
+              Send Inquiry →
+            </button>
           </motion.form>
-        </div>
+        </section>
 
       </div>
     </div>
