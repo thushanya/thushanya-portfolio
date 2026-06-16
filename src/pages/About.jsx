@@ -194,12 +194,12 @@ export default function About() {
               AI systems, dashboards, and modern web platforms built for real-world impact.
             </p>
 
-            <a
-              href="/hire"
-              className="inline-block mt-10 px-8 py-4 rounded-full bg-violet-500/20 hover:bg-violet-500/30 transition"
-            >
-              Start a project →
-            </a>
+            <button
+                onClick={() => navigate("/hire")}
+                className="px-6 py-3 rounded-full border border-white/10 hover:bg-white/5 transition"
+              >
+                Start a project →
+              </button>
           </motion.div>
         </section>
 
