@@ -7,13 +7,13 @@ export default function Home() {
 
   return (
     <PageWrapper>
-      <div className="min-h-screen pt-24 pb-28 relative overflow-y-auto snap-y snap-mandatory h-screen">
+      <div className="min-h-screen pt-24 pb-28 relative overflow-hidden">
         <div className="absolute inset-x-0 top-0 h-72 bg-gradient-to-b from-violet-500/15 to-transparent blur-3xl" />
         <div className="absolute left-0 top-36 h-56 w-56 rounded-full bg-fuchsia-500/10 blur-3xl" />
         <div className="absolute right-0 top-48 h-72 w-72 rounded-full bg-cyan-500/10 blur-3xl" />
 
         <div className="relative z-10 grid gap-16 xl:grid-cols-[1.05fr_0.95fr] items-center">
-          <section id="hero" className="space-y-8 snap-start">
+          <div className="space-y-8">
             <motion.span
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -26,18 +26,18 @@ export default function Home() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-6xl md:text-7xl font-bold tracking-tight text-white leading-tight"
+              className="text-5xl md:text-6xl font-bold tracking-tight text-white"
             >
-              Thushanya — Developer & Data Scientist
+                I’m Thushanya, a developer who blends data science, machine learning, and modern interfaces.
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="max-w-4xl text-xl text-violet-100/80 leading-relaxed"
+              className="max-w-3xl text-lg text-violet-100/80 leading-relaxed"
             >
-              I build modern web experiences, data dashboards, and machine learning solutions. Explore projects, source code, and interactive examples below.
+              I build modern web experiences, data dashboards, and machine learning solutions with polished UI, strong GitHub source code, and fast freelance delivery.
             </motion.p>
 
             <motion.div
@@ -64,7 +64,7 @@ export default function Home() {
                 { label: "Open-source code", value: "GitHub available" },
                 { label: "Focus", value: "AI + Web" },
                 { label: "Response time", value: "24h max" },
-                { label: "Scope", value: "Portfolio & Projects" }
+                { label: "Style", value: "Dark purple theme" }
               ].map((item) => (
                 <div key={item.label} className="rounded-3xl border border-white/10 bg-white/5 p-5 text-sm text-violet-100/80 shadow-glow-purple">
                   <p className="uppercase tracking-[0.25em] text-[0.65rem] text-violet-300">{item.label}</p>
@@ -72,7 +72,7 @@ export default function Home() {
                 </div>
               ))}
             </motion.div>
-          </section>
+          </div>
 
           <motion.div
             initial={{ opacity: 0, x: 32 }}
@@ -109,8 +109,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.8 }}
-          id="work"
-          className="mt-20 snap-start"
+          className="mt-20"
         >
           <h2 className="section-title mb-8">Selected work</h2>
           <div className="grid gap-6 lg:grid-cols-3">

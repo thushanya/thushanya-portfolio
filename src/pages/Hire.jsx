@@ -49,7 +49,7 @@ export default function Hire() {
           <span className="inline-flex rounded-full border border-violet-400/20 bg-violet-500/10 px-4 py-2 text-xs uppercase tracking-[0.35em] text-violet-200">
             Let’s collaborate
           </span>
-          <h1 className="section-title mt-6 mb-4">Create a polished solution with strong GitHub-backed delivery.</h1>
+          <h1 className="section-title mt-6 mb-4">Latest works.</h1>
           <p className="text-lg text-gray-400 max-w-2xl mb-8">
             I’m available for freelance projects, startup collaborations, and product development with data science, machine learning, and full stack expertise.
           </p>
@@ -81,11 +81,11 @@ export default function Hire() {
               </div>
               <div>
                 <p className="text-violet-300 font-semibold mb-1">Phone</p>
-                <p className="text-gray-300">+94 77 XXXXXX</p>
+                <p className="text-gray-300">+94 77 3254779</p>
               </div>
               <div>
                 <p className="text-violet-300 font-semibold mb-1">Availability</p>
-                <p className="text-gray-300">Remote | Freelance | Short-term contracts</p>
+                <p className="text-gray-300">Remote | Hybrid | On-site | Freelance | Short-term contracts</p>
               </div>
             </div>
           </div>
