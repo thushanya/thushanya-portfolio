@@ -1,15 +1,17 @@
 import { motion } from "framer-motion";
 import PageWrapper from "../components/PageWrapper";
 import { projects } from "../data/projects";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   const featured = projects.slice(0, 3);
+  const navigate = useNavigate();
 
   return (
     <PageWrapper>
       <div className="relative min-h-screen overflow-hidden pt-24 pb-28 bg-[#05010d] text-white">
 
-        {/* ================= BACKGROUND ================= */}
+        {/* BACKGROUND */}
         <div className="fixed inset-0 -z-10">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[700px] w-[700px] bg-violet-600/15 blur-[160px]" />
           <div className="absolute top-40 left-10 h-[400px] w-[400px] bg-fuchsia-500/10 blur-[140px]" />
@@ -40,15 +42,55 @@ export default function Home() {
               I design modern web systems, data-driven dashboards, and machine learning solutions with production-grade architecture and refined UI systems.
             </p>
 
-            {/* CTA */}
             <div className="flex flex-wrap gap-4 pt-2">
-              <a className="px-6 py-3 rounded-full bg-violet-500/20 hover:bg-violet-500/30 transition">
-                Browse projects
-              </a>
-              <a className="px-6 py-3 rounded-full border border-white/10 hover:bg-white/5 transition">
-                Hire me
-              </a>
+              <button
+                onClick={() => navigate("/projects")}
+                className="px-6 py-3 rounded-full bg-violet-500/20 hover:bg-violet-500/30 transition"
+              >
+                Browse projects →
+              </button>
+
+              <button
+                onClick={() => navigate("/hire")}
+                className="px-6 py-3 rounded-full border border-white/10 hover:bg-white/5 transition"
+              >
+                Hire me →
+              </button>
             </div>
+          </motion.section>
+
+          {/* ================= FLOATING PROFILE (NO CONTAINER STYLE) ================= */}
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="relative flex flex-col md:flex-row items-center justify-between gap-12"
+          >
+
+            {/* IMAGE - FLOATING */}
+            <div className="relative">
+              <div className="absolute inset-0 bg-violet-500/30 blur-3xl rounded-full scale-110" />
+              <img
+                src="https://github.com/thushanya.png"
+                className="relative h-52 w-52 md:h-60 md:w-60 rounded-full border border-white/10 shadow-2xl"
+              />
+            </div>
+
+            {/* TEXT - FLOATING RIGHT */}
+            <div className="max-w-2xl">
+              <p className="text-xs tracking-[0.3em] uppercase text-violet-300 mb-3">
+                Profile
+              </p>
+
+              <h2 className="text-3xl md:text-5xl font-semibold leading-tight">
+                Data science + ML + UI engineering convergence
+              </h2>
+
+              <p className="mt-5 text-violet-100/70 leading-relaxed">
+                Clean interfaces, scalable architectures, and performance-driven implementations across modern software systems.
+              </p>
+            </div>
+
           </motion.section>
 
           {/* ================= IDENTITY STRIP ================= */}
@@ -58,7 +100,6 @@ export default function Home() {
             viewport={{ once: true }}
             className="grid md:grid-cols-2 gap-12"
           >
-
             <div className="space-y-4 font-mono text-sm text-zinc-300">
               <p className="text-violet-400">SYSTEM_ACTIVE</p>
               <p>AI + SOFTWARE ENGINEER</p>
@@ -75,10 +116,9 @@ export default function Home() {
                 I merge machine learning, backend engineering, and frontend design into unified production systems focused on clarity and performance.
               </p>
             </div>
-
           </motion.section>
 
-          {/* ================= FLOATING INFO STRIP ================= */}
+          {/* FLOATING STRIP */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -91,7 +131,7 @@ export default function Home() {
             <span>🌍 Remote / Hybrid</span>
           </motion.div>
 
-          {/* ================= ABOUT CARD ================= */}
+          {/* OVERVIEW */}
           <motion.section
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -101,28 +141,21 @@ export default function Home() {
             <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 to-transparent blur-3xl rounded-3xl" />
 
             <div className="relative p-10 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl">
-              <div className="flex flex-col md:flex-row items-center gap-10">
+              <p className="text-violet-300 text-sm tracking-[0.3em] uppercase mb-4">
+                Overview
+              </p>
 
-                <img
-                  src="https://github.com/thushanya.png"
-                  className="h-40 w-40 rounded-full border border-violet-400/30"
-                />
+              <h2 className="text-3xl font-semibold">
+                Building systems that scale with intelligence
+              </h2>
 
-                <div>
-                  <h2 className="text-2xl md:text-3xl font-semibold">
-                    Data science + ML + UI engineering convergence
-                  </h2>
-
-                  <p className="mt-4 text-violet-100/70 leading-relaxed">
-                    Clean interfaces, scalable architectures, and performance-driven implementations across modern software systems.
-                  </p>
-                </div>
-
-              </div>
+              <p className="mt-4 text-violet-100/70 leading-relaxed">
+                Focused on production-ready machine learning systems, scalable backend architecture, and modern frontend experiences.
+              </p>
             </div>
           </motion.section>
 
-          {/* ================= PROJECTS ================= */}
+          {/* PROJECTS */}
           <motion.section
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -133,7 +166,6 @@ export default function Home() {
             </h2>
 
             <div className="grid md:grid-cols-3 gap-6">
-
               {featured.map((project, index) => (
                 <motion.div
                   key={project.name}
@@ -144,7 +176,6 @@ export default function Home() {
                   className={`group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 hover:bg-white/10 transition
                     ${index === 0 ? "md:col-span-2" : ""}`}
                 >
-
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-gradient-to-r from-violet-500/10 to-cyan-500/10" />
 
                   <div className="relative">
@@ -173,10 +204,8 @@ export default function Home() {
                       View GitHub →
                     </a>
                   </div>
-
                 </motion.div>
               ))}
-
             </div>
           </motion.section>
 

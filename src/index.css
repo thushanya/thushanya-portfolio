@@ -4,6 +4,16 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+.section-snap {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
 :root {
   --color-primary: #8b5cf6;
   --color-accent: #d946ef;
