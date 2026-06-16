@@ -4,8 +4,25 @@ import { projects } from "../data/projects";
 import { useNavigate } from "react-router-dom";
 
 export default function Home() {
-  const featured = projects.slice(0, 3);
   const navigate = useNavigate();
+
+  // 🔥 FIXED NAME MATCH
+  const wildfire = projects.find(
+    (p) => p.name === "WildfireDB Analysis"
+  );
+
+  // all other projects except wildfire
+  const others = projects.filter(
+    (p) => p.name !== "WildfireDB Analysis"
+  );
+
+  // FINAL SELECTED WORK (Wildfire ALWAYS FIRST)
+  const featured = [
+    wildfire,
+    ...others
+  ]
+    .filter(Boolean)
+    .slice(0, 3);
 
   return (
     <PageWrapper>
@@ -20,7 +37,7 @@ export default function Home() {
 
         <div className="relative z-10 max-w-6xl mx-auto px-6 space-y-32">
 
-          {/* ================= HERO ================= */}
+          {/* HERO */}
           <motion.section
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -59,15 +76,13 @@ export default function Home() {
             </div>
           </motion.section>
 
-          {/* ================= FLOATING PROFILE (NO CONTAINER STYLE) ================= */}
+          {/* PROFILE */}
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="relative flex flex-col md:flex-row items-center justify-between gap-12"
           >
-
-            {/* IMAGE - FLOATING */}
             <div className="relative">
               <div className="absolute inset-0 bg-violet-500/30 blur-3xl rounded-full scale-110" />
               <img
@@ -76,7 +91,6 @@ export default function Home() {
               />
             </div>
 
-            {/* TEXT - FLOATING RIGHT */}
             <div className="max-w-2xl">
               <p className="text-xs tracking-[0.3em] uppercase text-violet-300 mb-3">
                 Profile
@@ -90,10 +104,9 @@ export default function Home() {
                 Clean interfaces, scalable architectures, and performance-driven implementations across modern software systems.
               </p>
             </div>
-
           </motion.section>
 
-          {/* ================= IDENTITY STRIP ================= */}
+          {/* IDENTITY */}
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -118,7 +131,7 @@ export default function Home() {
             </div>
           </motion.section>
 
-          {/* FLOATING STRIP */}
+          {/* STRIP */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

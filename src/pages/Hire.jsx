@@ -111,7 +111,7 @@ ${formData.message}`;
         <div className="max-w-4xl mx-auto space-y-10">
 
           <h2 className="text-4xl md:text-5xl font-semibold">
-            Structured execution. Clean delivery.
+            Are you interested? Let’s configure your next interface. 
           </h2>
 
           <p className="text-violet-100/60 leading-relaxed">

@@ -195,11 +195,12 @@ export default function About() {
             </p>
 
             <button
-                onClick={() => navigate("/hire")}
-                className="px-6 py-3 rounded-full border border-white/10 hover:bg-white/5 transition"
-              >
-                Start a project →
-              </button>
+            onClick={() => navigate("/hire")}
+            className="px-6 py-3 rounded-full border border-white/10 hover:bg-white/5 transition"
+            >
+            Start a project →
+            </button>
+            
           </motion.div>
         </section>
 

@@ -13,15 +13,20 @@ export default function Projects() {
     "Mobile"
   ];
 
+  const featured = projects.find(
+    (p) => p.name === "Wildfire Analysis"
+  );
+
   const filtered =
     filter === "All"
       ? projects
       : projects.filter((p) => p.category === filter);
 
-  // Ensure max 6 projects display cleanly
-  const displayProjects = filtered.slice(0, 6);
-  const featured = displayProjects[0];
-  const gridItems = displayProjects.slice(1);
+  const filteredWithoutFeatured = filtered.filter(
+    (p) => p.name !== "Wildfire Analysis"
+  );
+
+  const gridItems = filteredWithoutFeatured.slice(0, 6);
 
   return (
     <div className="bg-[#07020f] text-white overflow-hidden">
@@ -75,7 +80,7 @@ export default function Projects() {
         </div>
       </section>
 
-      {/* FEATURED (1 BIG CARD) */}
+      {/* FEATURED */}
       {featured && (
         <section className="px-6 pb-20">
           <div className="max-w-5xl mx-auto">
@@ -83,78 +88,103 @@ export default function Projects() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-10 overflow-hidden"
+              className="relative group rounded-3xl p-[1px] bg-gradient-to-r from-violet-500/40 via-fuchsia-500/30 to-cyan-400/40"
             >
-              <div className="absolute -top-20 -right-20 h-80 w-80 bg-violet-500/20 blur-3xl rounded-full" />
+              <div className="relative rounded-3xl bg-white/5 backdrop-blur-2xl p-10 overflow-hidden shadow-2xl transition-all duration-500 group-hover:scale-[1.02]">
 
-              <p className="text-xs tracking-[0.3em] uppercase text-violet-300">
-                Featured System
-              </p>
+                <div className="absolute -top-20 -right-20 h-80 w-80 bg-violet-500/20 blur-3xl rounded-full" />
+                <div className="absolute -bottom-20 -left-20 h-80 w-80 bg-cyan-500/10 blur-3xl rounded-full" />
 
-              <h2 className="mt-4 text-4xl font-semibold">
-                {featured.name}
-              </h2>
+                <p className="text-xs tracking-[0.3em] uppercase text-violet-300">
+                  Featured System
+                </p>
 
-              <p className="mt-4 text-violet-100/60 max-w-2xl">
-                {featured.description}
-              </p>
+                <h2 className="mt-4 text-4xl font-semibold">
+                  {featured.name}
+                </h2>
 
-              <p className="mt-6 text-sm text-violet-300">
-                {featured.tech}
-              </p>
+                <p className="mt-4 text-violet-100/70 max-w-2xl">
+                  {featured.description}
+                </p>
 
-              <a
-                href={featured.repo}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-block mt-8 text-white/80 hover:text-white"
-              >
-                View Source →
-              </a>
+                <p className="mt-6 text-sm text-violet-300">
+                  {featured.tech}
+                </p>
+
+                <a
+                  href={featured.repo}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-block mt-8 text-white/80 hover:text-white transition"
+                >
+                  View Source →
+                </a>
+              </div>
             </motion.div>
           </div>
         </section>
       )}
 
-      {/* GRID (2 BY 2 CLEAN LAYOUT FOR 5 REMAINING) */}
-      <section className="px-6 pb-32">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+      {/* ROAD / TIMELINE LAYOUT */}
+      <section className="px-6 pb-32 relative">
+        <div className="max-w-5xl mx-auto relative">
 
-          {gridItems.map((project, index) => (
-            <motion.div
-              key={project.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05 }}
-              className="group relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 hover:bg-white/10 transition"
-            >
-              <p className="text-xs tracking-[0.3em] uppercase text-violet-300">
-                {project.category}
-              </p>
+          {/* center line */}
+          <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-white/10 transform -translate-x-1/2" />
 
-              <h3 className="mt-3 text-xl font-semibold">
-                {project.name}
-              </h3>
+          <div className="space-y-16">
+            {gridItems.map((project, index) => {
+              const isLeft = index % 2 === 0;
 
-              <p className="mt-2 text-sm text-violet-100/60">
-                {project.description}
-              </p>
+              return (
+                <motion.div
+                  key={project.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 }}
+                  className={`relative flex items-center ${
+                    isLeft ? "justify-start" : "justify-end"
+                  }`}
+                >
+                  {/* dot */}
+                  <div className="absolute left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-violet-400 shadow-[0_0_20px_rgba(168,85,247,0.6)]" />
 
-              <p className="mt-3 text-xs text-violet-300">
-                {project.tech}
-              </p>
+                  {/* card */}
+                  <div className="w-full md:w-[45%] group relative p-[1px] rounded-3xl bg-gradient-to-r from-white/10 via-violet-500/10 to-white/5">
 
-              <a
-                href={project.repo}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-block mt-4 text-sm text-white/70 hover:text-white"
-              >
-                View →
-              </a>
-            </motion.div>
-          ))}
+                    <div className="relative rounded-3xl bg-white/5 backdrop-blur-xl p-6 transition-all duration-300 hover:bg-white/10 hover:scale-[1.03]">
+
+                      <p className="text-xs tracking-[0.3em] uppercase text-violet-300">
+                        {project.category}
+                      </p>
+
+                      <h3 className="mt-3 text-xl font-semibold">
+                        {project.name}
+                      </h3>
+
+                      <p className="mt-2 text-sm text-violet-100/60">
+                        {project.description}
+                      </p>
+
+                      <p className="mt-3 text-xs text-violet-300">
+                        {project.tech}
+                      </p>
+
+                      <a
+                        href={project.repo}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-block mt-4 text-sm text-white/70 hover:text-white transition"
+                      >
+                        View →
+                      </a>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
 
         </div>
       </section>
