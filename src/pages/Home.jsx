@@ -7,136 +7,136 @@ export default function Home() {
 
   return (
     <PageWrapper>
-      <div className="min-h-screen pt-24 pb-28 relative overflow-hidden">
-        <div className="absolute inset-x-0 top-0 h-72 bg-gradient-to-b from-violet-500/15 to-transparent blur-3xl" />
-        <div className="absolute left-0 top-36 h-56 w-56 rounded-full bg-fuchsia-500/10 blur-3xl" />
-        <div className="absolute right-0 top-48 h-72 w-72 rounded-full bg-cyan-500/10 blur-3xl" />
+      <div className="relative min-h-screen overflow-hidden pt-24 pb-28">
 
-        <div className="relative z-10 grid gap-16 xl:grid-cols-[1.05fr_0.95fr] items-center">
-          <div className="space-y-8">
-            <motion.span
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="inline-flex rounded-full border border-violet-400/20 bg-violet-500/10 px-4 py-2 text-xs uppercase tracking-[0.35em] text-violet-200"
-            >
+        {/* background blobs */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-0 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-violet-500/20 blur-[120px]" />
+          <div className="absolute top-40 left-10 h-[300px] w-[300px] rounded-full bg-fuchsia-500/10 blur-[100px]" />
+          <div className="absolute bottom-0 right-10 h-[400px] w-[400px] rounded-full bg-cyan-500/10 blur-[120px]" />
+        </div>
+
+        {/* HERO */}
+        <div className="relative z-10 max-w-6xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="space-y-6"
+          >
+            <span className="inline-block text-xs tracking-[0.4em] uppercase text-violet-300">
               BSc (Hons) IT — Data Science @ SLIIT
-            </motion.span>
+            </span>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-5xl md:text-6xl font-bold tracking-tight text-white"
-            >
-                I’m Thushanya, a developer who blends data science, machine learning, and modern interfaces.
-            </motion.h1>
+            <h1 className="text-5xl md:text-7xl font-bold leading-tight text-white">
+              I’m{" "}
+              <span className="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-300 bg-clip-text text-transparent">
+                Thushanya Jeyathasan
+              </span>
+            </h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="max-w-3xl text-lg text-violet-100/80 leading-relaxed"
-            >
-              I build modern web experiences, data dashboards, and machine learning solutions with polished UI, strong GitHub source code, and fast freelance delivery.
-            </motion.p>
+            <p className="max-w-2xl text-lg text-violet-100/70 leading-relaxed">
+              I build modern web experiences, data dashboards, and machine learning solutions with clean UI, scalable code, and production-ready delivery.
+            </p>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="flex flex-col gap-4 sm:flex-row sm:items-center"
-            >
-              <a href="/projects" className="btn-primary inline-flex items-center justify-center w-full sm:w-auto">
+            <div className="flex gap-4 flex-wrap">
+              <a className="px-6 py-3 rounded-full bg-violet-500/20 text-violet-200 hover:bg-violet-500/30 transition">
                 Browse projects
               </a>
-              <a href="/hire" className="btn-secondary inline-flex items-center justify-center w-full sm:w-auto">
+              <a className="px-6 py-3 rounded-full border border-white/10 text-white hover:bg-white/5 transition">
                 Hire me
               </a>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.25 }}
-              className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4"
-            >
-              {[
-                { label: "Open-source code", value: "GitHub available" },
-                { label: "Focus", value: "AI + Web" },
-                { label: "Response time", value: "24h max" },
-                { label: "Style", value: "Dark purple theme" }
-              ].map((item) => (
-                <div key={item.label} className="rounded-3xl border border-white/10 bg-white/5 p-5 text-sm text-violet-100/80 shadow-glow-purple">
-                  <p className="uppercase tracking-[0.25em] text-[0.65rem] text-violet-300">{item.label}</p>
-                  <p className="mt-3 text-lg font-semibold text-white">{item.value}</p>
-                </div>
-              ))}
-            </motion.div>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 32 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            className="rounded-[2rem] border border-white/10 bg-[#080216]/90 p-8 shadow-glow-purple backdrop-blur-xl"
-          >
-            <div className="flex flex-col items-center gap-6 text-center">
-              <img
-                src="https://github.com/thushanya.png"
-                alt="Thushanya profile"
-                className="h-40 w-40 rounded-full border border-violet-400/40 object-cover shadow-xl"
-              />
-              <div>
-                <p className="text-sm uppercase tracking-[0.3em] text-violet-300">Hi, I'm Thushanya</p>
-                <h2 className="mt-4 text-3xl font-semibold text-white">A developer who blends data science, ML, and modern interfaces.</h2>
-              </div>
             </div>
+          </motion.div>
 
-            <div className="mt-10 grid gap-4">
-              <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
-                <p className="text-sm text-violet-300">Featured expertise</p>
-                <p className="mt-3 text-white">Responsive React sites, ML pipelines, dashboard analytics, and GitHub-backed delivery.</p>
-              </div>
-              <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
-                <p className="text-sm text-violet-300">What I deliver</p>
-                <p className="mt-3 text-white">Clean UI, strong component polish, fast interactions, and production-style code references.</p>
+          {/* floating info strip */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="mt-12 flex flex-wrap gap-6 text-sm text-violet-200/70"
+          >
+            <span>⚡ GitHub available</span>
+            <span>🧠 AI + Web focus</span>
+            <span>⏱ 24h response</span>
+            <span>🌍 Remote / Hybrid</span>
+          </motion.div>
+
+          {/* ABOUT FLOAT CARD (not boxed grid) */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="mt-16 relative"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 to-transparent blur-2xl rounded-3xl" />
+
+            <div className="relative p-10 border border-white/10 rounded-3xl bg-white/5 backdrop-blur-xl">
+              <div className="flex flex-col md:flex-row items-center gap-10">
+                <img
+                  src="https://github.com/thushanya.png"
+                  className="h-40 w-40 rounded-full border border-violet-400/30"
+                />
+
+                <div>
+                  <h2 className="text-2xl md:text-3xl font-semibold text-white">
+                    Developer blending ML, data science & modern UI systems
+                  </h2>
+                  <p className="mt-4 text-violet-100/70">
+                    Clean interfaces, scalable architecture, and performance-focused implementations across web and data systems.
+                  </p>
+                </div>
               </div>
             </div>
           </motion.div>
-        </div>
 
-        <motion.section
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-          className="mt-20"
-        >
-          <h2 className="section-title mb-8">Selected work</h2>
-          <div className="grid gap-6 lg:grid-cols-3">
-            {featured.map((project, index) => (
-              <motion.div
-                key={project.name}
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="rounded-[2rem] border border-white/10 bg-[#090216]/90 p-6 shadow-glow-purple backdrop-blur-xl"
-              >
-                <p className="text-xs uppercase tracking-[0.3em] text-violet-300">{project.category}</p>
-                <h3 className="mt-4 text-2xl font-semibold text-white">{project.name}</h3>
-                <p className="mt-3 text-gray-300 leading-relaxed">{project.description}</p>
-                <p className="mt-4 text-sm text-violet-200">{project.tech}</p>
-                <a
-                  href={project.repo}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-6 inline-flex rounded-full bg-violet-400/10 px-4 py-2 text-sm font-semibold text-violet-200 transition hover:bg-violet-400/20"
+          {/* PROJECTS — STAGGERED / NON-UNIFORM */}
+          <motion.section className="mt-24">
+            <h2 className="text-xl uppercase tracking-[0.4em] text-violet-300 mb-10">
+              Selected Work
+            </h2>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {featured.map((project, index) => (
+                <motion.div
+                  key={project.name}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.15 }}
+                  className={`relative group overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-6
+                    ${index === 0 ? "md:col-span-2" : ""}`}
                 >
-                  View GitHub
-                </a>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-gradient-to-r from-violet-500/10 to-cyan-500/10" />
+
+                  <div className="relative">
+                    <p className="text-xs tracking-[0.3em] uppercase text-violet-300">
+                      {project.category}
+                    </p>
+
+                    <h3 className="mt-4 text-2xl font-semibold text-white">
+                      {project.name}
+                    </h3>
+
+                    <p className="mt-3 text-violet-100/70">
+                      {project.description}
+                    </p>
+
+                    <p className="mt-4 text-sm text-violet-300">
+                      {project.tech}
+                    </p>
+
+                    <a
+                      href={project.repo}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-block mt-6 text-sm text-white/80 hover:text-white"
+                    >
+                      View GitHub →
+                    </a>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.section>
+        </div>
       </div>
     </PageWrapper>
   );

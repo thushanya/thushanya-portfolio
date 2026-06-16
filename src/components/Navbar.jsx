@@ -18,7 +18,7 @@ export default function Navbar() {
             whileHover={{ scale: 1.05 }}
             className="text-violet-400 font-bold text-2xl"
           >
-            Thushanya
+            Thushanya Jeyathasan
           </motion.h1>
         </Link>
 
