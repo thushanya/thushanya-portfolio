@@ -52,48 +52,36 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Mobile Hamburger (purple animated morph) */}
+        {/* Mobile Hamburger */}
         <button
           onClick={() => setMenuOpen(true)}
           className="md:hidden relative w-10 h-10 flex items-center justify-center"
         >
-          <motion.div
-            animate={menuOpen ? "open" : "closed"}
-            className="flex flex-col gap-[5px]"
-          >
+          <motion.div className="flex flex-col gap-[5px]">
             <motion.span
               className="w-6 h-[2px] bg-violet-400"
-              variants={{
-                closed: { rotate: 0, y: 0 },
-                open: { rotate: 45, y: 6 },
-              }}
+              animate={menuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
               transition={{ duration: 0.25 }}
             />
             <motion.span
               className="w-6 h-[2px] bg-violet-400"
-              variants={{
-                closed: { opacity: 1 },
-                open: { opacity: 0 },
-              }}
+              animate={menuOpen ? { opacity: 0 } : { opacity: 1 }}
               transition={{ duration: 0.2 }}
             />
             <motion.span
               className="w-6 h-[2px] bg-violet-400"
-              variants={{
-                closed: { rotate: 0, y: 0 },
-                open: { rotate: -45, y: -6 },
-              }}
+              animate={menuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
               transition={{ duration: 0.25 }}
             />
           </motion.div>
         </button>
       </div>
 
-      {/* MOBILE OVERLAY (blur + click outside close) */}
+      {/* MOBILE MENU */}
       <AnimatePresence>
         {menuOpen && (
           <>
-            {/* Blur Background */}
+            {/* Click outside overlay */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -102,25 +90,26 @@ export default function Navbar() {
               className="fixed inset-0 bg-black/40 backdrop-blur-xl z-40"
             />
 
-            {/* Menu Panel */}
+            {/* Glass Menu */}
             <motion.div
               initial={{ opacity: 0, y: -20, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -20, scale: 0.98 }}
               transition={{ duration: 0.25 }}
-              className="md:hidden fixed top-20 left-4 right-4 z-50 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-2xl shadow-xl overflow-hidden"
+              className="fixed top-24 left-1/2 -translate-x-1/2 w-[85%] max-w-sm z-50 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-2xl shadow-xl"
             >
-              <div className="flex flex-col p-5 gap-3">
+              <div className="flex flex-col items-center justify-center py-10 gap-6">
 
                 {navItems.map((item) => (
                   <Link
                     key={item.path}
                     to={item.path}
                     onClick={closeMenu}
+                    className="w-full flex justify-center"
                   >
                     <motion.div
-                      whileHover={{ scale: 1.02 }}
-                      className={`px-4 py-3 rounded-xl transition ${
+                      whileHover={{ scale: 1.05 }}
+                      className={`px-6 py-3 rounded-xl text-center w-[80%] transition ${
                         isActive(item.path)
                           ? "bg-violet-500/20 text-violet-300"
                           : "text-gray-200 hover:bg-white/5"
@@ -130,15 +119,6 @@ export default function Navbar() {
                     </motion.div>
                   </Link>
                 ))}
-
-                <Link to="/hire" onClick={closeMenu}>
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    className="mt-2 px-4 py-3 rounded-xl text-center bg-gradient-to-r from-violet-400 to-violet-600 text-white font-semibold"
-                  >
-                    Hire Me
-                  </motion.div>
-                </Link>
 
               </div>
             </motion.div>
