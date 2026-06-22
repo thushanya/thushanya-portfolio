@@ -5,12 +5,13 @@ import Projects from "./pages/Projects";
 import About from "./pages/About";
 import Hire from "./pages/Hire";
 import ScrollToTop from "./components/ScrollToTop";
+import Footer from "./components/Footer";
 
 export default function App() {
   return (
     <>
       <Navbar />
-      <ScrollToTop />
+      <ScrollToTop /> 
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/hire" element={<Hire />} />
       </Routes>
+      <Footer /> 
     </>
   );
 }
