@@ -51,8 +51,9 @@ export default function Navbar() {
 
         {/* Hamburger */}
         <button
-          onClick={() => setMenuOpen(true)}
-          className="md:hidden w-10 h-10 flex items-center justify-center"
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="md:hidden w-10 h-10 flex items-center justify-center z-50 relative"
+          aria-label="Toggle Menu"
         >
           <div className="space-y-1.5">
             <motion.span
@@ -72,62 +73,59 @@ export default function Navbar() {
       </div>
 
       {/* MOBILE OVERLAY */}
-<AnimatePresence>
-  {menuOpen && (
-    <>
-      {/* BACKDROP */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        onClick={closeMenu}
-        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
-      />
+      <AnimatePresence>
+        {menuOpen && (
+          <>
+            {/* BACKDROP BLUR */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeMenu}
+              className="fixed inset-0 bg-black/60 backdrop-blur-md z-40"
+            />
 
-      {/* CENTERED GLASS MENU */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9, y: -10 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.9, y: -10 }}
-        transition={{ type: "spring", stiffness: 260, damping: 20 }}
-        className="fixed inset-0 z-50 flex items-center justify-center px-6"
-      >
-        <div className="w-full max-w-xs rounded-3xl border border-white/10 bg-white/10 backdrop-blur-2xl shadow-2xl overflow-hidden">
+            {/* SLIDE-IN RIGHT DRAWER */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="fixed right-0 top-0 bottom-0 h-screen w-full max-w-[280px] z-45 border-l border-white/10 bg-black/70 backdrop-blur-2xl shadow-2xl flex flex-col justify-between pt-24 pb-8"
+            >
+              {/* LINKS */}
+              <div className="flex flex-col gap-2 px-4">
+                <p className="text-xs uppercase tracking-widest text-zinc-500 font-semibold px-4 mb-4">
+                  Navigation
+                </p>
+                {navItems.map((item) => (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    onClick={closeMenu}
+                  >
+                    <motion.div
+                      whileTap={{ scale: 0.98 }}
+                      className={`px-4 py-3 rounded-xl transition-all duration-200 text-left ${
+                        isActive(item.path)
+                          ? "text-violet-300 bg-violet-500/10 font-medium"
+                          : "text-zinc-200 hover:bg-white/5"
+                      }`}
+                    >
+                      {item.label}
+                    </motion.div>
+                  </Link>
+                ))}
+              </div>
 
-          {/* TOP SPACING / HEADER */}
-          <div className="pt-6 pb-2 text-center">
-            <div className="w-10 h-1 bg-white/20 rounded-full mx-auto mb-4" />
-            <p className="text-xs text-zinc-400">Navigation</p>
-          </div>
-
-          {/* LINKS */}
-          <div className="flex flex-col py-4">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                onClick={closeMenu}
-              >
-                <div
-                  className={`px-6 py-4 text-center transition-all duration-200 ${
-                    isActive(item.path)
-                      ? "text-violet-300 bg-violet-500/10"
-                      : "text-zinc-200 hover:bg-white/10"
-                  }`}
-                >
-                  {item.label}
-                </div>
-              </Link>
-            ))}
-          </div>
-
-          {/* BOTTOM SPACING */}
-          <div className="pb-5" />
-        </div>
-      </motion.div>
-    </>
-  )}
-</AnimatePresence>
+              {/* FOOTER BRANDING / SPACING */}
+              <div className="px-8 text-center text-xs text-zinc-600">
+                &copy; {new Date().getFullYear()}
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 }
